@@ -2,16 +2,15 @@
 addons:
 - include:
     jobs:
-    - name: kubelet
-      release: kubo
     - name: kube-apiserver
       release: kubo
   jobs:
-  - name: resolv
+  - name: csi-smb-kubernetes-objects
     properties:
-      search: bosh-agent-id
-    release: os-conf
-  name: resolv-nodes
+      post-start-custom-specs: 
+    release: tkgi-csi-driver-smb
+  name: tkgi-csi-driver-smb-master
+
 releases:
-- name: os-conf
-  version: 21.0.0+dev.1
+- name: tkgi-csi-driver-smb
+  version: 0+dev.1

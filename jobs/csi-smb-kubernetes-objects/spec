@@ -1,5 +1,5 @@
 ---
-name: kubernetes-objects
+name: csi-smb-kubernetes-objects
 
 templates:
   bin/apply_policies.erb: bin/apply_policies
