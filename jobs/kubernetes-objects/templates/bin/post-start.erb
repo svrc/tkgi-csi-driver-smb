@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+set -e
+
+TIMEOUT=120
+
+echo 'Applying policies'
+if timeout "$TIMEOUT" /var/vcap/jobs/csi-smb-kubernetes-objects/bin/apply_policies; then
+  echo "Applied all policies"
+else
+  echo "Failed to apply policies after $TIMEOUT with exit code $?"
+  exit 1
+fi
+
+
