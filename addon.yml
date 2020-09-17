@@ -179,4 +179,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.1
+  version: 0+dev.2
