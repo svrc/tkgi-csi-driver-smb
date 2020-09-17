@@ -2,7 +2,9 @@
 
 ## What does this do?
 
-This will ensure that TKGI/PKS clusters can use SMB file shares via StorageClass or PeristentVolume *without enabling privileged mode*.   It runs the CSI controller as a Deployment, but runs the node agent as a BOSH job directly on the Docker runtime (which is always privileged-capable).
+This will ensure that TKGI/PKS clusters can use SMB file shares via StorageClass or PeristentVolume with two benefits over the usual DaemonSet-based deployment
+* *No requirement to enable privileged mode*.   It runs the CSI controller as a Deployment, but runs the node agent as a BOSH job directly on the Docker runtime (which is always privileged-capable).
+* *No requirement for container registry or internet access*.  It includes the images in this BOSH release, for airgapped environments.
 
 
 ## How do I install it?
