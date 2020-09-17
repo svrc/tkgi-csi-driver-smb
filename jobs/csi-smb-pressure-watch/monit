@@ -1,0 +1,8 @@
+
+check process csi-smb-disk-pressure-watch
+  with pidfile /var/vcap/sys/run/csi-smb-disk-pressure-watch/csi-smb-disk-pressure-watch.pid
+  start program "/var/vcap/jobs/csi-smb-disk-pressure-watch/bin/ctl start"
+  stop program "/var/vcap/jobs/csi-smb-disk-pressure-watch/bin/ctl stop"
+  group vcap
+
+
