@@ -16,7 +16,7 @@ addons:
     release: tkgi-csi-driver-smb
     properties:
       containers:
-      - name: liveness-probe
+      - name: csi_smb_liveness_probe
         image: mcr.microsoft.com/oss/kubernetes-csi/livenessprobe
         tag: v1.1.0
         command: "--csi-address=/csi/csi.sock --connection-timeout=3s --health-port=29643 --v=5"
@@ -25,7 +25,7 @@ addons:
         cpu_quota: 100
         memory: 100m
         cpu_shares: 10
-      - name: node-driver-registrar
+      - name: csi_smb_node_driver_registrar
         image: mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar
         tag: v1.2.0
         command: "--csi-address=/csi/csi.sock --kubelet-registration-path=/var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io/csi.sock --v=5"
@@ -35,7 +35,7 @@ addons:
         cpu_quota: 100
         memory: 100m
         cpu_shares: 10
-      - name: smb
+      - name: csi_smb_node
         image: mcr.microsoft.com/k8s/csi/smb-csi
         tag: v0.3.0
         command: "--v=5 --endpoint=unix:///csi/csi.sock"
@@ -229,4 +229,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.8
+  version: 0+dev.9
