@@ -98,8 +98,7 @@ case $1 in
     ;;
 
   stop)
-    # Clear the monit debugger, otherwise containers will be cleaned up next startup
-    killall monit_debugger
+    # Do nothing
     ;;
 
   *)
