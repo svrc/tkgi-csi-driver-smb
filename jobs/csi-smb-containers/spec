@@ -1,5 +1,5 @@
 ---
-name: containers
+name: csi-smb-containers
 
 packages:
   - bosh-helpers
