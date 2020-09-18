@@ -19,11 +19,16 @@ e.g.
 ```
 export BOSH_CLIENT=ops_manager BOSH_CLIENT_SECRET=fakesecret BOSH_CA_CERT=/var/tempest/workspaces/default/root_ca_certificate  BOSH_ENVIRONMENT=10.0.0.10
 ```
-3. Copy or clone this repository onto this BOSH CLI workstation and create+upload the BOSH release to the director
+3. Download the BOSH release from this GitHub releases page, and copy to your BOSH CLI enviornment, uploading it.
 
 ```
-TBD
-
+bosh upload-release https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.0/tkgi-csi-driver-smb-0.3.tgz # IF you have internet acccess
+```
+or if airgapped
+```
+wget https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.0/tkgi-csi-driver-smb-0.3.tgz 
+# copy it this file to your BOSH CLI workstation and then run:
+bosh upload-release tkgi-csi-driver-smb-0.3.tgz
 ```
 4. Configure the addon from this repo
 ```
