@@ -6,6 +6,9 @@ This will ensure that TKGI/PKS clusters can use SMB file shares via StorageClass
 * *No requirement to enable privileged mode*.   It runs the CSI controller as a Kubernetes Deployment, but runs the node agent as a BOSH job directly on the Docker runtime (which is always privileged-capable).
 * *No requirement for container registry or internet access*.  It includes the images in this BOSH release, for airgapped environments.
 
+That said, you probably should use the DaemonSet-based drivers and enable privileged access on your Kubernetes cluster, and if you're airgapped, copy the iamges and retag them.   It's the more standardized way to installing CSI, and easier to understand than the nuances of BOSH.   
+
+I will make reasonable efforts to keep this up to date with the [upstream](https://github.com/kubernetes-csi/csi-driver-smb) but I don't have a formal SLO.
 
 ## How do I install it?
 
