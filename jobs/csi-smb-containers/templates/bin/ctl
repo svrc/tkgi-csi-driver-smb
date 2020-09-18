@@ -98,9 +98,8 @@ case $1 in
     ;;
 
   stop)
-    # Stop and remove Docker Container
-    ${DOCKER_COMMAND} stop ${container_name} || true
-    ${DOCKER_COMMAND} rm ${container_name} || true
+    # Clear the monit debugger, otherwise containers will be cleaned up next startup
+    killall monit_debugger
     ;;
 
   *)
