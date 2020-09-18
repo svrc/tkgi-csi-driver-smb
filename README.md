@@ -2,10 +2,13 @@
 
 ## What does this do?
 
-This will ensure that TKGI/PKS clusters can use SMB file shares via StorageClass or PeristentVolume with two benefits over the usual DaemonSet-based deployment
-* *No requirement to enable privileged mode*.   It runs the CSI controller as a Kubernetes Deployment, but runs the node agent as a BOSH job directly on the Docker runtime (which is always privileged-capable).
-* *No requirement for container registry or internet access*.  It includes the images in this BOSH release, for airgapped environments.
+This will ensure that TKGI/PKS clusters can use **SMB file shares via StorageClass or PeristentVolume** with two benefits over the usual DaemonSet-based CSI deployment
+* **No requirement to enable privileged mode**.   It runs the CSI controller as a Kubernetes Deployment, but runs the node agent as a BOSH job directly on the Docker runtime (which is always privileged-capable).
+* **No requirement for container registry or internet access**.  It includes the images in this BOSH release, for airgapped environments.
 
+That said, **you probably should use the DaemonSet-based drivers** and enable privileged access + Pod Security Policies (and/or OpenPolicyAgent) on your Kubernetes cluster, and if you're airgapped, copy the images and retag them.   It's the more standardized way to installing CSI, and easier to understand than the nuances of BOSH.   
+
+This version exists mostly for those who aren't ready to do that and are willing to deal with the update lag and/or potential quirks.  I will make reasonable efforts to keep this up to date with the [upstream](https://github.com/kubernetes-csi/csi-driver-smb) but I don't have a formal SLO.
 
 ## How do I install it?
 
@@ -19,14 +22,7 @@ export BOSH_CLIENT=ops_manager BOSH_CLIENT_SECRET=fakesecret BOSH_CA_CERT=/var/t
 3. Copy or clone this repository onto this BOSH CLI workstation and create+upload the BOSH release to the director
 
 ```
-git clone https://github.com/svrc/tkgi-csi-driver-smb && cd tkgi-csi-driver-smb
-git submodule init ; git submodule update
-cd docker-boshrelease
-bosh create-release --force
-bosh upload-release ./dev_releases/docker-boshrelease/docker-boshrelease.0.0+dev.1.yml
-cd ../kubo-release
-bosh create-release --force
-bosh upload-release ./dev_releases/kubo-release/kubo-release.0.0+dev.1.yml
+TBD
 
 ```
 4. Configure the addon from this repo
