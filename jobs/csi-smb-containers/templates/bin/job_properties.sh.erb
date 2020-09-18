@@ -41,7 +41,7 @@ export <%= container['name'] %>_command="<%= container['command'] %>"
 
 <% if container['k8s_node_name'] %>
 # Argument to add to commmandline
-export <%= container['name'] %>_k8s_node_name="--node-id=${K8S_NODE_NAME}"
+export <%= container['name'] %>_k8s_node_name="--nodeid=${K8S_NODE_NAME}"
 <% end %>
 
 <% if container['blkio_weight'] %>
