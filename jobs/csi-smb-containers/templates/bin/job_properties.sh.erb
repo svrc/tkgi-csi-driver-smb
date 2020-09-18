@@ -19,14 +19,6 @@ export CONTAINERS_TMP_DIR=${TMP_DIR}
 # Docker command
 export DOCKER_COMMAND="/var/vcap/packages/docker/bin/docker -H unix:///var/vcap/sys/run/docker/docker.sock"
 
-export kubectl="/var/vcap/packages/kubernetes/bin/kubectl --kubeconfig=/var/vcap/jobs/kubelet/config/kubeconfig"
-
-# Wait for kubelet to become Ready before we move on 
-until ${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$"; do
-  sleep 2
-done
-
-export K8S_NODE_NAME=$(${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$" | cut -d" " -f1)
 
 <% p('containers', []).each do |container| %>
 #
@@ -46,6 +38,14 @@ export <%= container['name'] %>_command="<%= container['command'] %>"
 <% end %>
 
 <% if container['k8s_node_name'] %>
+export kubectl="/var/vcap/packages/kubernetes/bin/kubectl --kubeconfig=/var/vcap/jobs/kubelet/config/kubeconfig"
+
+# Wait for kubelet to become Ready before we move on 
+until ${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$"; do
+  sleep 2
+done
+
+export K8S_NODE_NAME=$(${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$" | cut -d" " -f1)
 # Argument to add to commmandline
 export <%= container['name'] %>_k8s_node_name="--nodeid=${K8S_NODE_NAME}"
 <% end %>

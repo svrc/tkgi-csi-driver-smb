@@ -16,28 +16,17 @@ addons:
     release: tkgi-csi-driver-smb
     properties:
       containers:
-      - name: csi_smb_liveness_probe
-        image: mcr.microsoft.com/oss/kubernetes-csi/livenessprobe
-        tag: v1.1.0
-        command: "--csi-address=/csi/csi.sock --connection-timeout=3s --health-port=29643 --v=5"
-        volumes:
-        - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
-        cpu_quota: 100
-        memory: 100m
-        cpu_shares: 10
       - name: csi_smb_node_driver_registrar
-        image: mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar
-        tag: v1.2.0
+        image: mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar:v1.2.0
         command: "--csi-address=/csi/csi.sock --kubelet-registration-path=/var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io/csi.sock --v=5"
         volumes:
         - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
         - /var/vcap/data/kubelet/plugins_registry/:/registration
-        cpu_quota: 100
+        cpu_quota: 100000
         memory: 100m
-        cpu_shares: 10
+        cpu_shares: 10000
       - name: csi_smb_node
-        image: mcr.microsoft.com/k8s/csi/smb-csi
-        tag: v0.3.0
+        image: mcr.microsoft.com/k8s/csi/smb-csi:v0.3.0
         command: "--v=5 --endpoint=unix:///csi/csi.sock"
         k8s_node_name: true
         volumes:
@@ -46,10 +35,10 @@ addons:
         bind_ports:
         - "29643:29643"
         - "29645:29645"
-        cpu_quota: 200
+        cpu_quota: 200000
         memory: 200m
-        cpu_shares: 10
- 
+        cpu_shares: 10000
+        privileged: true 
 - include:
     jobs:
     - name: kube-apiserver
@@ -229,4 +218,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.9
+  version: 0+dev.13
