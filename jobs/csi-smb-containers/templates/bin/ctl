@@ -24,6 +24,8 @@ case $1 in
       chmod 777 ${CONTAINERS_STORE_DIR}/${container_name}
     fi
 
+    mkdir -p /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io
+
     # Build the Docker image from Dockerfile
     if [ -a "${CONTAINERS_CONF_DIR}/${container_name}/Dockerfile" ]; then
         image=$(${DOCKER_COMMAND} images | grep "$(eval echo "\$${container_name}_image")") || true

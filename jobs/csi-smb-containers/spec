@@ -5,7 +5,6 @@ templates:
   bin/ctl: bin/ctl
   bin/job_properties.sh.erb: bin/job_properties.sh
   bin/post-stop.erb: bin/post-stop
-  bin/pre-start.erb: bin/pre-start
 
 properties:
   containers:
