@@ -4,13 +4,14 @@ set -e # exit immediately if a simple command exits with a non-zero status
 
 container_name=$2
 
-# Setup common env vars and folders
-source /var/vcap/packages/bosh-helpers/ctl_setup.sh 'csi-smb-containers' "${container_name}"
-export CONTAINER_PID_FILE=${CONTAINERS_PID_DIR}/${container_name}.pid
 
 case $1 in
 
   start)
+    # Setup common env vars and folders
+    source /var/vcap/packages/bosh-helpers/ctl_setup.sh 'csi-smb-containers' "${container_name}"
+    export CONTAINER_PID_FILE=${CONTAINERS_PID_DIR}/${container_name}.pid
+
     pid_guard ${CONTAINER_PID_FILE} ${JOB_NAME}
     echo $$ > ${CONTAINER_PID_FILE}
 
@@ -98,7 +99,9 @@ case $1 in
     ;;
 
   stop)
-    # Do nothing
+    # Stop and remove Docker Container
+    ${DOCKER_COMMAND} stop ${container_name} || true
+    ${DOCKER_COMMAND} rm ${container_name} || true
     ;;
 
   *)
