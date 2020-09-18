@@ -6,8 +6,9 @@ addons:
       release: kubo
     stemcell:
     - os: ubuntu-xenial
+  name: tkgi-csi-driver-smb-worker
   jobs:
-  - name: csi-disk-pressure-watch 
+  - name: csi-smb-disk-pressure-watch 
     release: tkgi-csi-driver-smb
   - name: csi-smb-load-images
     release: tkgi-csi-driver-smb
@@ -228,4 +229,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.4
+  version: 0+dev.7

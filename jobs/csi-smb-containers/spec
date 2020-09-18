@@ -1,9 +1,6 @@
 ---
 name: csi-smb-containers
 
-packages:
-  - bosh-helpers
-
 templates:
   bin/ctl: bin/ctl
   bin/job_properties.sh.erb: bin/job_properties.sh
