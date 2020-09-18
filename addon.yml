@@ -31,10 +31,7 @@ addons:
         k8s_node_name: true
         volumes:
         - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
-        - /var/vcap/data/kubelet:/var/vcap/data/kubelet 
-        bind_ports:
-        - "29643:29643"
-        - "29645:29645"
+        - /var/vcap/data/kubelet:/var/vcap/data/kubelet:rshared 
         cpu_quota: 200000
         memory: 200m
         cpu_shares: 10000
@@ -218,4 +215,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.13
+  version: 0+dev.21
