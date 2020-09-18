@@ -1,0 +1,14 @@
+#!/bin/bash -e
+
+[ -z "$DEBUG" ] || set -x
+
+kubectl="/var/vcap/packages/kubernetes/bin/kubectl --kubeconfig=/var/vcap/jobs/kubelet/config/kubeconfig"
+
+# Wait for kubelet to become Ready before we move on
+until ${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$"; do
+  sleep 2
+done
+
+set +e
+
+mkdir -p /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io

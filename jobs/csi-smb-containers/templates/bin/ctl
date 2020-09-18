@@ -83,6 +83,7 @@ case $1 in
       "$(eval echo "\$${container_name}_workdir")" \
       "$(eval echo "\$${container_name}_image")" \
       "$(eval echo "\$${container_name}_command")" \
+      "$(eval echo "\$${container_name}_k8s_node_name")" \
     "
     echo "$(date) Running Docker command with options: ${docker_options}"
     eval echo ${docker_options} | xargs ${DOCKER_COMMAND}  \

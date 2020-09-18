@@ -2,6 +2,55 @@
 addons:
 - include:
     jobs:
+    - name: kubelet
+      release: kubo
+    stemcell:
+    - os: ubuntu-xenial
+  jobs:
+  - name: csi-disk-pressure-watch 
+    release: tkgi-csi-driver-smb
+  - name: csi-smb-load-images
+    release: tkgi-csi-driver-smb
+  - name: csi-smb-containers
+    release: tkgi-csi-driver-smb
+    properties:
+      containers:
+      - name: liveness-probe
+        image: mcr.microsoft.com/oss/kubernetes-csi/livenessprobe
+        tag: v1.1.0
+        command: "--csi-address=/csi/csi.sock --connection-timeout=3s --health-port=29643 --v=5"
+        volumes:
+        - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
+        cpu_quota: 100
+        memory: 100m
+        cpu_shares: 10
+      - name: node-driver-registrar
+        image: mcr.microsoft.com/oss/kubernetes-csi/csi-node-driver-registrar
+        tag: v1.2.0
+        command: "--csi-address=/csi/csi.sock --kubelet-registration-path=/var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io/csi.sock --v=5"
+        volumes:
+        - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
+        - /var/vcap/data/kubelet/plugins_registry/:/registration
+        cpu_quota: 100
+        memory: 100m
+        cpu_shares: 10
+      - name: smb
+        image: mcr.microsoft.com/k8s/csi/smb-csi
+        tag: v0.3.0
+        command: "--v=5 --endpoint=unix:///csi/csi.sock"
+        k8s_node_name: true
+        volumes:
+        - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
+        - /var/vcap/data/kubelet:/var/vcap/data/kubelet 
+        bind_ports:
+        - "29643:29643"
+        - "29645:29645"
+        cpu_quota: 200
+        memory: 200m
+        cpu_shares: 10
+ 
+- include:
+    jobs:
     - name: kube-apiserver
       release: kubo
   jobs:

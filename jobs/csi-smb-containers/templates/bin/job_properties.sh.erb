@@ -19,6 +19,9 @@ export CONTAINERS_TMP_DIR=${TMP_DIR}
 # Docker command
 export DOCKER_COMMAND="/var/vcap/packages/docker/bin/docker -H unix:///var/vcap/sys/run/docker/docker.sock"
 
+export kubectl="/var/vcap/packages/kubernetes/bin/kubectl --kubeconfig=/var/vcap/jobs/kubelet/config/kubeconfig"
+K8S_NODE_NAME=$(${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$" | cut -d" " -f1)
+
 <% p('containers', []).each do |container| %>
 #
 # "<%= container['name'] %>" properties
@@ -34,6 +37,11 @@ export STORE_DIR=${CONTAINERS_STORE_DIR}
 <% if container['command'] %>
 # Command to the run (including arguments)
 export <%= container['name'] %>_command="<%= container['command'] %>"
+<% end %>
+
+<% if container['k8s_node_name'] %>
+# Argument to add to commmandline
+export <%= container['name'] %>_k8s_node_name="--node-id=${K8S_NODE_NAME}"
 <% end %>
 
 <% if container['blkio_weight'] %>
