@@ -19,14 +19,7 @@ export BOSH_CLIENT=ops_manager BOSH_CLIENT_SECRET=fakesecret BOSH_CA_CERT=/var/t
 3. Copy or clone this repository onto this BOSH CLI workstation and create+upload the BOSH release to the director
 
 ```
-git clone https://github.com/svrc/tkgi-csi-driver-smb && cd tkgi-csi-driver-smb
-git submodule init ; git submodule update
-cd docker-boshrelease
-bosh create-release --force
-bosh upload-release ./dev_releases/docker-boshrelease/docker-boshrelease.0.0+dev.1.yml
-cd ../kubo-release
-bosh create-release --force
-bosh upload-release ./dev_releases/kubo-release/kubo-release.0.0+dev.1.yml
+TBD
 
 ```
 4. Configure the addon from this repo
