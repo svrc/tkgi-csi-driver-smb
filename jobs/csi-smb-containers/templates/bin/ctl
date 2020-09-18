@@ -12,7 +12,7 @@ export CONTAINER_PID_FILE=${CONTAINERS_PID_DIR}/${container_name}.pid
 case $1 in
 
   start)
-    if [ $container_name -eq "csi_smb_node" ]; then
+    if [ $container_name == "csi_smb_node" ]; then
 
       # CSI drivers need the Kubernetes node name
 
