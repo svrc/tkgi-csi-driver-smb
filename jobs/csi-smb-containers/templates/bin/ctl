@@ -13,12 +13,18 @@ case $1 in
 
   start)
     if [ $container_name -eq "csi_smb_node" ]; then
+
+      # CSI drivers need the Kubernetes node name
+
       export kubectl="/var/vcap/packages/kubernetes/bin/kubectl --kubeconfig=/var/vcap/jobs/kubelet/config/kubeconfig"
       # Wait for kubelet to become Ready before we move on
       until $(${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$" 2>&1 > /dev/null); do
         sleep 2
       done
       export csi_smb_node_k8s_node_name="--nodeid=$(${kubectl} get nodes -o wide -L bosh.id | grep -e ' Ready' | grep "<%= spec.id %>$" | cut -d" " -f1)"
+
+      # CSI driver requires outbound network access, using the node IP as the SNAT
+      iptables -t nat -A POSTROUTING -s 172.17.0.0/16 ! -o docker0 -j MASQUERADE
     fi
     pid_guard ${CONTAINER_PID_FILE} ${JOB_NAME}
     echo $$ > ${CONTAINER_PID_FILE}
