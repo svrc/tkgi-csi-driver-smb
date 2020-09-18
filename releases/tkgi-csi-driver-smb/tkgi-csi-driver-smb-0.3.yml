@@ -1,0 +1,36 @@
+name: tkgi-csi-driver-smb
+version: "0.3"
+commit_hash: deffdb9
+uncommitted_changes: false
+jobs:
+- name: csi-smb-containers
+  version: 1451a6de7bf02b644b92e951fd941bb385f4d8efa25a6d218735053d75c65ef5
+  fingerprint: 1451a6de7bf02b644b92e951fd941bb385f4d8efa25a6d218735053d75c65ef5
+  sha1: sha256:7564f5917a5f9ab87cc5a8442298a2c3b42cb07ffb546c654780c0c9a186a3b1
+  packages: []
+- name: csi-smb-disk-pressure-watch
+  version: 1f294082cbb04110f1af9bf8096e92047a74e369fc7f96f3bb901ae0d5b9740a
+  fingerprint: 1f294082cbb04110f1af9bf8096e92047a74e369fc7f96f3bb901ae0d5b9740a
+  sha1: sha256:853f7c8e441c3bca59855670825f5c9854c212f79b5f50a0c2a726156dbc0a45
+  packages: []
+- name: csi-smb-kubernetes-objects
+  version: 5f596b2aafef42645af7f3492f896752e76246d6e139936d775627d4c17af1e1
+  fingerprint: 5f596b2aafef42645af7f3492f896752e76246d6e139936d775627d4c17af1e1
+  sha1: sha256:6186d9c2297c93b4658fb672e82b9df53a40e4aaa4383158400803cb04986378
+  packages: []
+- name: csi-smb-load-images
+  version: 28fd3d028ccaddf8ec0c432bacd71b13f94dd551f339a799471d3cb7504bb42e
+  fingerprint: 28fd3d028ccaddf8ec0c432bacd71b13f94dd551f339a799471d3cb7504bb42e
+  sha1: sha256:de767e3021729bd29858f019fed5885e44eeffe247a8cf6b163325b353e64e28
+  packages:
+  - csi-smb
+packages:
+- name: csi-smb
+  version: 6edf59579e1742c5ac2906e7bbe5c9941231326786f3bb2e45159da380c9ead0
+  fingerprint: 6edf59579e1742c5ac2906e7bbe5c9941231326786f3bb2e45159da380c9ead0
+  sha1: sha256:17458397491f9228a538f93f77e8b9172880447c8a9c637a524aa5abdfbbbe89
+  dependencies: []
+license:
+  version: 7913ad98b05b03c52a5d4b5167f37f0fbc42a835540d565b69accc2a460e3769
+  fingerprint: 7913ad98b05b03c52a5d4b5167f37f0fbc42a835540d565b69accc2a460e3769
+  sha1: sha256:bc927096a717be5cc00154d2d16b7c62e5d1cac8f7b4f2af5cc487ab314314b6
