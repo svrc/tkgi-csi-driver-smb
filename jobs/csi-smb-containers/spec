@@ -59,4 +59,5 @@ properties:
       containers.volume_driver: Optional string containing the volume driver for the container
       containers.workdir: Optional string containing the working directory inside the container
       containers.store_dir: Optional string containing directory to store the containers data files
+      containers.k8s_node_name: Optional includes "--nodeid=<node name>" from kubectl get nodes as a docker command arg
 
