@@ -1,12 +1,16 @@
 container-images/mcr.microsoft.com_k8s_csi_smb-csi:v0.3.0.tgz:
   size: 175121920
+  object_id: b6312cd4-11c8-4ce3-576c-bfd1190ed8b7
   sha: sha256:8c9efcfd37a559b00acebb204d45cf93790a42b58cad074fb9c00352fd54482c
 container-images/mcr.microsoft.com_oss_kubernetes-csi_csi-node-driver-registrar:v1.2.0.tgz:
   size: 18295808
+  object_id: d178b5b9-25b0-4948-5853-a440c7edafa1
   sha: sha256:99df3dd0b0453da9fa84c1adffcdcd9da519d964982e7aff8e3f272539ef87e1
 container-images/mcr.microsoft.com_oss_kubernetes-csi_csi-provisioner:v1.4.0.tgz:
   size: 55723008
+  object_id: 1b60962f-d805-4289-6c16-6100168c8c5d
   sha: sha256:15af3224b903aa011c6f4c37ae7eba1372b180988418a8aa15d8ec29e502725e
 container-images/mcr.microsoft.com_oss_kubernetes-csi_livenessprobe:v1.1.0.tgz:
   size: 17383424
+  object_id: 23b4d138-1c9b-4b66-692a-05ccd5212342
   sha: sha256:e0dfc0fde137e6d1cc69a3937323c695a2ec83d005b406b271be45b66bf748a9
