@@ -99,9 +99,7 @@ case $1 in
     ;;
 
   stop)
-    # Stop and remove Docker Container
-    ${DOCKER_COMMAND} stop ${container_name} || true
-    ${DOCKER_COMMAND} rm ${container_name} || true
+    # Do Nothing
     ;;
 
   *)
