@@ -1,4 +1,5 @@
 ---
+name: tkgi-csi-driver-smb
 blobstore:
   provider: s3
   options:
