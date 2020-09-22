@@ -32,8 +32,13 @@ bosh upload-release tkgi-csi-driver-smb-0.3.1.tgz
 ```
 4. Configure the addon from this repo
 ```
-cd ..
+wget https://raw.githubusercontent.com/svrc/tkgi-csi-driver-smb/master/addon.yml
 bosh -n update-config --name=tkgi-csi-driver-smb --type=runtime ./addon.yml
 ```
 5. Update your PKS clusters via the PKS CLI and/or Ops Manager "Apply Pending Changes" button with the PKS upgrade errand enabled.  This addon will automatically be installed on all master and worker nodes with the default manifest `addon.yml`
 
+
+## Troubleshooting
+
+logs for the components are available in the local docker daemon, you can get Docker CLI access on any BOSH worker node via `source /var/vcap/jobs/docker/bin/envrc`
+Then logs for the node agent plugin:  `docker logs csi_smb_node`
