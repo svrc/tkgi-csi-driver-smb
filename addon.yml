@@ -29,6 +29,7 @@ addons:
         image: mcr.microsoft.com/k8s/csi/smb-csi:v0.3.0
         command: "--v=5 --endpoint=unix:///csi/csi.sock"
         k8s_node_name: true
+        timeout: 240
         volumes:
         - /var/vcap/data/kubelet/plugins_registry/smb.csi.k8s.io:/csi
         - /var/vcap/data/kubelet:/var/vcap/data/kubelet:rshared 
@@ -215,4 +216,4 @@ addons:
 
 releases:
 - name: tkgi-csi-driver-smb
-  version: 0+dev.21
+  version: 0.3+dev.3
