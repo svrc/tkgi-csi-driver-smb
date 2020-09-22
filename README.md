@@ -22,13 +22,13 @@ export BOSH_CLIENT=ops_manager BOSH_CLIENT_SECRET=fakesecret BOSH_CA_CERT=/var/t
 3. Download the BOSH release from this GitHub releases page, and copy to your BOSH CLI enviornment, uploading it.
 
 ```
-bosh upload-release https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.0/tkgi-csi-driver-smb-0.3.tgz # IF you have internet acccess
+bosh upload-release https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.0/tkgi-csi-driver-smb-0.3.1.tgz # IF you have internet acccess
 ```
 or if airgapped
 ```
-wget https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.0/tkgi-csi-driver-smb-0.3.tgz 
+wget https://github.com/svrc/tkgi-csi-driver-smb/releases/download/0.3.1/tkgi-csi-driver-smb-0.3.1.tgz 
 # copy it this file to your BOSH CLI workstation and then run:
-bosh upload-release tkgi-csi-driver-smb-0.3.tgz
+bosh upload-release tkgi-csi-driver-smb-0.3.1.tgz
 ```
 4. Configure the addon from this repo
 ```
